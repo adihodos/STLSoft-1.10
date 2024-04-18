@@ -1,6 +1,7 @@
 
 # directories (by name)
 
+.direnv/*
 /.git-old/
 /.vs/
 

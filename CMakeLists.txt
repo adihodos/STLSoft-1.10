@@ -41,7 +41,7 @@ string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 # handle version number
 set(RX_PROJ_TAG "${PROJECT_NAME_UPPER}")
 set(RX_WS "[ \t]")
-file(READ "${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h" _header_file)
+file(READ "${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME_LOWER}/${PROJECT_NAME_LOWER}.h" _header_file)
 string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MAJOR${RX_WS}+([0-9]+)" MAJOR_DUMMY ${_header_file})
 set(_VERSION_MAJOR ${CMAKE_MATCH_1})
 string(REGEX MATCH "#${RX_WS}*define${RX_WS}+_?${RX_PROJ_TAG}_VER_MINOR${RX_WS}+([0-9]+)" MINOR_DUMMY ${_header_file})
@@ -60,11 +60,7 @@ message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VER
 
 # adhere strictly to C and C++ standards plus extensions. These are actually
 # useless since we do not compile anything; they merely state our intention.
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
 
@@ -82,9 +78,10 @@ include(GNUInstallDirs)
 include(BuildType)
 
 add_library(STLSoft INTERFACE)
-
+target_compile_features(STLSoft INTERFACE cxx_std_17)
+target_compile_features(STLSoft INTERFACE c_std_11)
 target_include_directories(STLSoft INTERFACE
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
 
@@ -145,7 +142,7 @@ foreach(ITEM
 )
 
     install(
-        DIRECTORY ${CMAKE_SOURCE_DIR}/include/${ITEM}/
+        DIRECTORY ${PROJECT_SOURCE_DIR}/include/${ITEM}/
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${ITEM}/
         FILES_MATCHING
         PATTERN "*.h*"

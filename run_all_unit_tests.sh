@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash 
 
 ScriptPath=$0
 Dir=$(cd $(dirname "$ScriptPath"); pwd)
