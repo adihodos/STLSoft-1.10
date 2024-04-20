@@ -153,8 +153,8 @@
 # elif defined(STLSOFT_COMPILER_IS_GCC)
 
 #  if 0
-#  elif !defined(__STRICT_ANSI__)
-#   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(_stricmp)
+#  else
+#   define STLSOFT_API_EXTERNAL_string_stricmp              STLSOFT_NS_GLOBAL_(strcasecmp)
 #  endif
 
   /* Intel */
@@ -225,8 +225,7 @@
 # elif defined(STLSOFT_COMPILER_IS_GCC)
 
 #  if 0
-#  elif !defined(__STRICT_ANSI__)
-#   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(_wcsicmp)
+#   define STLSOFT_API_EXTERNAL_string_wcsicmp              STLSOFT_NS_GLOBAL_(wcscasecmp)
 #  endif
 
   /* Intel */
@@ -295,13 +294,8 @@
 # elif defined(STLSOFT_COMPILER_IS_GCC)
 
 #  if 0
-#  elif 0 || \
-        defined(__MINGW32__)||\
-        defined(__MINGW64__)||\
-        0
+#  else 
 #   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(strncasecmp)
-#  elif !defined(__STRICT_ANSI__)
-#   define STLSOFT_API_EXTERNAL_string_strnicmp             STLSOFT_NS_GLOBAL_(_strnicmp)
 #  endif
 
   /* Intel */
@@ -366,8 +360,8 @@
 # elif defined(STLSOFT_COMPILER_IS_GCC)
 
 #  if 0
-#  elif !defined(__STRICT_ANSI__)
-#   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(_wcsnicmp)
+#  else
+#   define STLSOFT_API_EXTERNAL_string_wcsnicmp             STLSOFT_NS_GLOBAL_(wcsncasecmp)
 #  endif
 
   /* Intel */

@@ -2,6 +2,8 @@
 # directories (by name)
 
 .direnv/*
+.envrc
+shell.nix
 /.git-old/
 /.vs/
 

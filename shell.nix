@@ -4,8 +4,8 @@ in
 pkgs.mkShell {
   buildInputs = with pkgs; [
     clang
-    clang-tools
-    gdb
+  #  clang-tools
+#    gdb
     renderdoc
     cmake    
     pkg-config

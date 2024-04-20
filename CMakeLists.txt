@@ -1,4 +1,5 @@
 
+
 # ######################################################################## #
 # File:     /CMakeLists.txt
 #
@@ -57,19 +58,11 @@ set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT
 
 message(NOTICE "Generating CMake build scripts for ${PROJECT_NAME} ${PROJECT_VERSION}")
 
-
-# adhere strictly to C and C++ standards plus extensions. These are actually
-# useless since we do not compile anything; they merely state our intention.
-set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
-set(CMAKE_CXX_EXTENSIONS ON)
-
-
 # ##########################################################
 # install
 
 # provides install directory variables as defined by the GNU Coding Standards.
 include(GNUInstallDirs)
-
 
 # ##########################################################
 # build
@@ -85,6 +78,10 @@ target_include_directories(STLSoft INTERFACE
     $<INSTALL_INTERFACE:include>
 )
 
+# adhere strictly to C and C++ standards plus extensions. These are actually
+# useless since we do not compile anything; they merely state our intention.
+# set(CMAKE_C_EXTENSIONS ON) # GNU extensions and POSIX standard
+# set(CMAKE_CXX_EXTENSIONS ON)
 
 # ##########################################################
 # examples
@@ -96,7 +93,6 @@ if(BUILD_EXAMPLES)
 
     add_subdirectory(examples)
 endif()
-
 
 # ##########################################################
 # test
@@ -185,4 +181,3 @@ install(FILES
 
 
 # ############################## end of file ############################# #
-
